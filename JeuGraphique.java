@@ -1,9 +1,6 @@
 import java.awt.*;
 import java.util.Random;
 import javax.swing.*;
-import java.awt.*;
-import java.util.Random;
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -26,12 +23,33 @@ class Pokemon {
     }
 }
 
+class BackgroundPanel extends JPanel {
+    private Image backgroundImage;
+
+    public BackgroundPanel(String imagePath) {
+        try {
+            // Charge l'image de fond
+            backgroundImage = ImageIO.read(new File(imagePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        // Dessine l'image de fond
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
+}
 
 public class JeuGraphique {
     private static Pokemon joueur1;
     private static Pokemon joueur2;
     private static JFrame frame;
-    private static JPanel panel;
+    private static BackgroundPanel panel;
     private static JButton attaqueButton, soinButton;
     private static JLabel infoLabel, joueur1Label, joueur2Label;
     private static Random random;
@@ -44,7 +62,8 @@ public class JeuGraphique {
         frame.setSize(600, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        panel = new JPanel();
+        // Remplacer le JPanel par notre BackgroundPanel
+        panel = new BackgroundPanel("C:\\Users\\bt412090\\OneDrive - Université Côte d'Azur\\Bureau\\Java\\JeuGraphique.java\\fondjungle.jfif");  // Remplacez par le chemin de votre image
         panel.setLayout(new BorderLayout());
 
         infoLabel = new JLabel("Bienvenue dans le Combat Ultime!", JLabel.CENTER);
@@ -154,5 +173,4 @@ public class JeuGraphique {
         updateLabels();
         verifierFinJeu();
     }
-    
 }
