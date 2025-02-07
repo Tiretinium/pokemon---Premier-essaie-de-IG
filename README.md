@@ -31,7 +31,8 @@ Ce projet est mon tout premier essai pour créer une interface graphique en Java
 ## Capture d'écran
 Voici à quoi ressemble le jeu lorsqu'il est lancé :
 
-![Screenshot](path/to/your/screenshot.jpg)
+![Screenshot](![Uploading image.png…]()
+)
 
 ## Avenir du Projet
 Ce projet est encore à ses débuts, et voici quelques idées d'améliorations futures :
